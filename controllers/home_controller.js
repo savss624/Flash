@@ -1,3 +1,5 @@
 module.exports.home = function(req, res) {
-    res.end('home page');
+    res.render('home', {
+        title: "FlashChat"
+    });
 }
