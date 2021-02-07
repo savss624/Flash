@@ -1,0 +1,14 @@
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/FlashChat_development');
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'Error connecting to database'));
+
+db.once('open', function() {
+    console.log('database connected');
+});
+
+module.exports = db;
+
