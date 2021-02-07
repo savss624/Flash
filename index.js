@@ -1,10 +1,10 @@
-const express = require('express');
 const port = 8000;
+const express = require('express');
 const app = express();
 
-app.use('/', )
+app.use('/', require('./routes'));
 
-app.listen(function(err) {
+app.listen(port, function(err) {
     if(err) {
         console.log('404');
         return;
