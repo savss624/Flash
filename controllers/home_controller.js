@@ -1,5 +1,7 @@
+const users_db = require('../models/user');
+
 module.exports.home = function(req, res) {
-    res.render('home', {
-        title: "FlashChat"
+    return res.render('home', {
+        title: 'Flash',
     });
 }

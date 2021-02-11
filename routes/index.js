@@ -1,9 +1,10 @@
 const express = require('express');
+const passport = require('passport');
 
 const router = express.Router();
-const homeControler = require('../controllers/home_controller');
+const homeController = require('../controllers/home_controller');
 
-router.get('/', homeControler.home);
+router.get('/', homeController.home);
 router.use('/user', require('./users'));
 
 module.exports = router;
