@@ -5,16 +5,19 @@
 
 <section>
     <h1>Posts</h1>
-    <form action="/post/create" id="new-post" method="POST">
-        <textarea name="feedPost" cols="30" rows="3"></textarea>
-        <button type="submit">Post</button>
-    </form>
+    <% if(locals.user) { %>
+        <form action="/post/create" id="new-post" method="POST">
+            <textarea name="feedPost" cols="30" rows="3" placeholder="Type Here..."></textarea>
+            <button type="submit">Post</button>
+        </form>
+    <%} %>
     <ul>
-        <% for(let i of postsList) { %>
+        <% for(i of postsList) { %>
             <li>
                 <p>
                     <%= i.content %>
-                    
+                    <br>
+                    <%= i.user.name %>
                 </p>
             </li>                   
         <% } %>

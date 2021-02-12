@@ -81,7 +81,7 @@ module.exports.authUser = function(req, res) {
             return res.redirect('back');
         }
     });*/
-    return res.redirect('/user/profile');
+    return res.redirect('/');
 }
 
 module.exports.signout = function(req, res) {
