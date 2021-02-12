@@ -2,4 +2,21 @@
 <h1>
     Hello !! Welcome to <%= title %>
 </h1>
-</form>
+
+<section>
+    <h1>Posts</h1>
+    <form action="/post/create" id="new-post" method="POST">
+        <textarea name="feedPost" cols="30" rows="3"></textarea>
+        <button type="submit">Post</button>
+    </form>
+    <ul>
+        <% for(let i of postsList) { %>
+            <li>
+                <p>
+                    <%= i.content %>
+                    
+                </p>
+            </li>                   
+        <% } %>
+    </ul>
+</section>
