@@ -18,6 +18,13 @@
                     <%= i.content %>
                     <br>
                     <%= i.user.name %>
+                    <% if(locals.user) { %>
+                        <form action="/comment/create" id="new-comment" method="POST">
+                            <input type="text" placeholder="Comment Here..." name="comment" required>
+                            <input type="hidden" name="postId" value="<%= i._id %>">
+                            <button type="submit" >Add Comment</button>
+                        </form>
+                    <% } %>
                 </p>
             </li>                   
         <% } %>
