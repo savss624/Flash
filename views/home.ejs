@@ -12,18 +12,25 @@
         </form>
     <%} %>
     <ul>
-        <% for(i of postsList) { %>
+        <% for(post of postsList) { %>
             <li>
                 <p>
-                    <%= i.content %>
+                    <%= post.content %>
                     <br>
-                    <%= i.user.name %>
+                    <%= post.user.name %>
                     <% if(locals.user) { %>
                         <form action="/comment/create" id="new-comment" method="POST">
                             <input type="text" placeholder="Comment Here..." name="comment" required>
-                            <input type="hidden" name="postId" value="<%= i._id %>">
+                            <input type="hidden" name="postId" value="<%= post._id %>">
                             <button type="submit" >Add Comment</button>
                         </form>
+                        <ul>
+                            <% for(comment of post.comment) { %>
+                                <li>
+                                    <p><%= comment.user.name%> : <%= comment.content%></p>
+                                </li>
+                            <% } %>
+                        </ul>
                     <% } %>
                 </p>
             </li>                   
