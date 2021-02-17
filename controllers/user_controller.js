@@ -1,8 +1,11 @@
 const users_db = require('../models/user');
 
 module.exports.profile = function(req, res) {
-    return res.render('home', {
-        title: 'Flash',
+    users_db.findById(req.params.id, function(err, user) {
+        return res.render('profile', {
+            title: 'Flash',
+            profileUser: user,
+        });
     });
     /*if(req.cookies.FlashChat) {
         users_db.findById(req.cookies.FlashChat, function(err, user) {
@@ -23,9 +26,19 @@ module.exports.profile = function(req, res) {
     }*/
 }
 
+module.exports.profileUpdate = function(req, res) {
+    if(req.user.id == req.params.id) {
+        users_db.findByIdAndUpdate(req.params.id, {email: req.body.email, name: req.body.name} /*Or req.body*/, function(err, user) {
+            return res.redirect('back');
+        });
+    } else {
+        return res.status(401).send('Unauthorized');
+    }
+} 
+
 module.exports.signin = function(req, res) {
     if(req.isAuthenticated()) {
-        return res.redirect('profile');
+        return res.redirect('/');
     }
 
     res.render('signin', {
@@ -35,7 +48,7 @@ module.exports.signin = function(req, res) {
 
 module.exports.signup = function(req, res) {
     if(req.isAuthenticated()) {
-        return res.redirect('profile');
+        return res.redirect('/');
     }
 
     return res.render('signup', {

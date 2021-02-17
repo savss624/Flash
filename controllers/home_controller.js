@@ -1,4 +1,5 @@
 const posts_db = require('../models/post');
+const user_db = require('../models/user');
 
 module.exports.home = function(req, res) {
     posts_db.find({})
@@ -15,9 +16,12 @@ module.exports.home = function(req, res) {
             return;
         }
 
-        return res.render('home', {
-            title: 'Flash',
-            postsList: posts
+        user_db.find({}, function(err, user) {
+            return res.render('home', {
+                title: 'Flash',
+                postsList: posts,
+                usersList: user
+            });
         });
     });
 }

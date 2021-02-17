@@ -17,3 +17,12 @@
         <% } %>
     </ul>
 </section>
+
+<section id="friend-list">
+    <h1>Friends</h1>
+    <% for(u of usersList) { %>
+        <p>
+            <a href="/user/profile/<%= u.id %>"><%= u.name %></a>
+        </p>
+    <% } %>
+</section>
