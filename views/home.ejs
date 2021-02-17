@@ -7,33 +7,13 @@
     <h1>Posts</h1>
     <% if(locals.user) { %>
         <form action="/post/create" id="new-post" method="POST">
-            <textarea name="feedPost" cols="30" rows="3" placeholder="Type Here..."></textarea>
+            <textarea name="feedPost" cols="30" rows="3" placeholder="Type Here..." required></textarea>
             <button type="submit">Post</button>
         </form>
     <%} %>
     <ul>
         <% for(post of postsList) { %>
-            <li>
-                <p>
-                    <%= post.content %>
-                    <br>
-                    <%= post.user.name %>
-                    <% if(locals.user) { %>
-                        <form action="/comment/create" id="new-comment" method="POST">
-                            <input type="text" placeholder="Comment Here..." name="comment" required>
-                            <input type="hidden" name="postId" value="<%= post._id %>">
-                            <button type="submit" >Add Comment</button>
-                        </form>
-                        <ul>
-                            <% for(comment of post.comment) { %>
-                                <li>
-                                    <p><%= comment.user.name%> : <%= comment.content%></p>
-                                </li>
-                            <% } %>
-                        </ul>
-                    <% } %>
-                </p>
-            </li>                   
+            <%- include('_post'); -%>                               
         <% } %>
     </ul>
 </section>

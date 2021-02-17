@@ -27,3 +27,17 @@ module.exports.create = function(req, res) {
         }
     });
 }
+
+module.exports.destroy = function(req, res) {
+    comment_db.findById(req.params.id, function(err, comment) {
+        if(req.user.id == comment.user) {
+            comment.remove();
+
+            post_db.findByIdAndUpdate(comment.post, { $pull: {comment : req.params.id}}, function(err, post) {
+                return res.redirect('back');
+            });
+        } else {
+            return res.redirect('back');
+        }
+    });
+}
