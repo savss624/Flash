@@ -1,28 +1,27 @@
 <link rel="stylesheet" href="/css/home.css">
-<h1>
-    Hello !! Welcome to <%= title %>
-</h1>
 
-<section>
-    <h1>Posts</h1>
-    <% if(locals.user) { %>
-        <form action="/post/create" id="new-post" method="POST">
-            <textarea name="feedPost" cols="30" rows="3" placeholder="Type Here..." required></textarea>
-            <button type="submit">Post</button>
-        </form>
-    <%} %>
-    <ul>
-        <% for(post of postsList) { %>
-            <%- include('_post'); -%>                               
+<div id="home-container">
+    <section id="feed-posts">
+        <h1>Posts</h1>
+        <% if(locals.user) { %>
+            <form action="/post/create" id="new-post" method="POST">
+                <textarea name="feedPost" cols="30" rows="3" placeholder="Type Here..." required></textarea>
+                <button type="submit">Post</button>
+            </form>
+        <%} %>
+        <ul>
+            <% for(post of postsList) { %>
+                <%- include('_post'); -%>                               
+            <% } %>
+        </ul>
+    </section>
+    
+    <section id="friend-lists">
+        <h1>Friends</h1>
+        <% for(u of usersList) { %>
+            <p>
+                <a href="/user/profile/<%= u.id %>"><%= u.name %></a>
+            </p>
         <% } %>
-    </ul>
-</section>
-
-<section id="friend-list">
-    <h1>Friends</h1>
-    <% for(u of usersList) { %>
-        <p>
-            <a href="/user/profile/<%= u.id %>"><%= u.name %></a>
-        </p>
-    <% } %>
-</section>
+    </section>
+</div>
